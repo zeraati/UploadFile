@@ -2,8 +2,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: "Cors",builder =>{ builder.AllowAnyOrigin();});
+	options.AddPolicy(name: "Cors", builder =>
+	{
+		builder.WithOrigins("*")
+		.AllowAnyMethod()
+		.AllowAnyHeader();
+	});
 });
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
